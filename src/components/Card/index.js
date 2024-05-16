@@ -1,6 +1,15 @@
 import './Card.css';
 
-export const Card = ({ pokemon }) => {
+export const Card = ({ pokemon, types }) => {
+
+    const typeHandler = () => {
+        if (types[1]) {
+            return types[0].type.name + ' | ' + types[1].type.name;
+        }
+        else {
+            return types[0].type.name;
+        }
+    }
 
     return (
         <div className='card'>
@@ -11,7 +20,7 @@ export const Card = ({ pokemon }) => {
                 height={200} 
             />
             <h2>{pokemon.name}</h2>
-            <p>tipo 1 | tipo 2</p>
+            <p>{typeHandler()}</p>
         </div>
     );
 }

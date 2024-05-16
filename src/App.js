@@ -39,7 +39,7 @@ function App() {
       <Header filteredPokemon={filteredPokemon} />
       <div className='container'>
         {pokemons.filter((pokemon) => pokemon.name.includes(filterPokemon)).map(pokemon => (
-        <Card key={pokemon.id} pokemon={pokemon} />
+        <Card key={pokemon.id} pokemon={pokemon} types={pokemon.types} />
       ))}
       </div>
       
