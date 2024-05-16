@@ -1,24 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import { Card } from './components/Card';
+import { Header } from './components/Header';
 
 function App() {
+
+  const [pokemons, setPokemons] = useState([]);
+
+  const [filterPokemon, setFilterPokemon] = useState('');
+
+  const filteredPokemon = (nome) => {
+    setFilterPokemon(nome);
+  }
+
+  const getApiData = async () => {
+    const endpoints = [];
+    try {
+      for(let i = 1; i <= 151; i++) {
+        endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
+      }
+      await Promise.all(endpoints.map((endpoint) => fetch(endpoint)))
+      .then ((response) => Promise.all(response.map(async res => res.json())))
+      .then ((response) =>{
+        setPokemons(response);
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  
+  }
+
+  useEffect(() => {
+    getApiData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header filteredPokemon={filteredPokemon} />
+      <div className='container'>
+        {pokemons.filter((pokemon) => pokemon.name.includes(filterPokemon)).map(pokemon => (
+        <Card key={pokemon.id} pokemon={pokemon} />
+      ))}
+      </div>
+      
+    </>
   );
 }
 
