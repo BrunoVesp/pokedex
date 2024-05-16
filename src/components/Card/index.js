@@ -16,8 +16,8 @@ export const Card = ({ pokemon, types }) => {
             <img 
                 src={pokemon.sprites.front_default} 
                 alt='Pokemon' 
-                width={200} 
-                height={200} 
+                width={150} 
+                height={150} 
             />
             <h2>{pokemon.name}</h2>
             <p>{typeHandler()}</p>
