@@ -9,7 +9,7 @@ export const Header = ({ filteredPokemon }) => {
             <input 
                 className='input-pesquisa' 
                 placeholder='Pesquisar Pokemon'
-                onChange={(e) => filteredPokemon(e.target.value)}
+                onChange={(e) => filteredPokemon(e.target.value.toLowerCase())}
             />
             <FaSearch className='icone' />
         </header>

@@ -2,6 +2,8 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { Card } from './components/Card';
 import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+// import { VerMais } from './components/VerMais';
 
 function App() {
 
@@ -14,9 +16,11 @@ function App() {
   }
 
   const getApiData = async () => {
+    const qtdPokemons = 151;
+
     const endpoints = [];
     try {
-      for(let i = 1; i <= 151; i++) {
+      for(let i = 1; i <= qtdPokemons; i++) {
         endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
       }
       await Promise.all(endpoints.map((endpoint) => fetch(endpoint)))
@@ -42,7 +46,8 @@ function App() {
         <Card key={pokemon.id} pokemon={pokemon} types={pokemon.types} />
       ))}
       </div>
-      
+      {/* <VerMais /> */}
+      <Footer />
     </>
   );
 }

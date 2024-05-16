@@ -1,0 +1,13 @@
+.rodape {
+    background-color: #EF5350;
+    color: white;
+    margin-top: 1rem;
+    padding: 2px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.rodape p a {
+    font-weight: bolder;
+    color: white;
+}
